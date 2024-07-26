@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
 import 'package:mobile_recharge/models/beneficiary.dart';
+import 'package:mobile_recharge/view/home/widgets/beneficery_top_up_button.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,35 +24,12 @@ class HomeScreen extends StatelessWidget {
                   itemCount: provider.beneficiaries.length,
                   itemBuilder: (context, index) {
                     final beneficiary = provider.beneficiaries[index];
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Text(beneficiary.nickname),
-                            Text(beneficiary.phoneNumber),
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        TopUpScreen(beneficiary: beneficiary),
-                                  ),
-                                );
-                              },
-                              child: const Text('Top Up'),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    return beneficeryCard(context, beneficiary);
                   },
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Example of adding a beneficiary
                   provider.addBeneficiary(Beneficiary(
                     nickname: 'John Doe',
                     phoneNumber: '0501234567',
@@ -100,4 +78,53 @@ class TopUpScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget beneficeryCard(BuildContext context, Beneficiary beneficiary) {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.015, vertical: 8.0),
+    child: SizedBox(
+      width: MediaQuery.of(context).size.width * 0.35,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: const Color(0xFFFDFDFD),
+            boxShadow: const [
+              BoxShadow(
+                  blurRadius: 5, color: Colors.black12, offset: Offset(0, 3))
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                beneficiary.nickname,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 10.5,
+                    // color: MAIN1,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(beneficiary.phoneNumber,
+                  style: const TextStyle(
+                      fontSize: 9.5,
+                      // color: TEXT_FIELD_HINT_COLOR,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500)),
+              const SizedBox(
+                height: 8,
+              ),
+              beneficiaryTopUpBtn(context, beneficiary)
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

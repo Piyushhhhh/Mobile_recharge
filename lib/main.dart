@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
-import 'package:mobile_recharge/view/home_screen.dart';
+import 'package:mobile_recharge/view/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
