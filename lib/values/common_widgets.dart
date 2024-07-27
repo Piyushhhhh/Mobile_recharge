@@ -5,8 +5,9 @@ Widget buildTextField({
   required String hintText,
   required Widget prefixIcon,
   TextInputType keyboardType = TextInputType.text,
+  String? Function(String?)? validator,
 }) {
-  return TextField(
+  return TextFormField(
     controller: controller,
     decoration: InputDecoration(
       hintText: hintText,
@@ -16,6 +17,7 @@ Widget buildTextField({
       ),
     ),
     keyboardType: keyboardType,
+    validator: validator,
   );
 }
 

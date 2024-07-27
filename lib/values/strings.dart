@@ -22,9 +22,12 @@ class Strings {
 
   // Beneficiary Detail page
   static const String beneficiaryDetails = "Beneficiary Details";
+  static const String verified = "Verified";
   static const String saveChanges = "Save Changes";
   static const String removeBeneficiary = "Remove Beneficiary";
-  static const String verified = "Verified";
-  static const String nicknameHint = "Nickname";
-  static const String phoneNumber = "Phone Number";
+  static const String nicknameRequired = 'Nickname is required';
+  static const String nicknameMaxLength =
+      'Nickname cannot exceed 20 characters';
+  static const String phoneNumberRequired = 'Phone number is required';
+  static const String phoneNumberInvalid = 'Enter a valid phone number';
 }

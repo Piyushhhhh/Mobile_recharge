@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/values/common_widgets.dart';
+import 'package:mobile_recharge/values/validators.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
 import 'package:mobile_recharge/models/beneficiary.dart';
@@ -23,6 +24,8 @@ class _BeneficiaryDetailPageState extends State<BeneficiaryDetailPage> {
 
   static const double _padding = 16.0;
   static const double _spacing = 8.0;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -54,68 +57,75 @@ class _BeneficiaryDetailPageState extends State<BeneficiaryDetailPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(_padding),
-        child: Column(
-          children: [
-            buildTextField(
-              controller: _nicknameController,
-              hintText: Strings.nicknameHint,
-              prefixIcon: const Icon(Icons.text_fields),
-            ),
-            const SizedBox(height: _spacing),
-            buildTextField(
-              controller: _phoneNumberController,
-              hintText: Strings.phoneNumberHint,
-              prefixIcon: const Padding(
-                padding: EdgeInsets.only(top: 10, right: 8, left: 8),
-                child: Text(
-                  "+971",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700),
-                ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              buildTextField(
+                controller: _nicknameController,
+                hintText: Strings.nickname,
+                prefixIcon: const Icon(Icons.text_fields),
+                validator: Validator.validateNickname,
               ),
-              keyboardType: TextInputType.phone,
-            ),
-            const SizedBox(height: _spacing),
-            SwitchListTile(
-              title: const Text(Strings.verified),
-              value: _isVerified,
-              onChanged: (bool value) {
-                setState(() {
-                  _isVerified = value;
-                });
-              },
-            ),
-            const SizedBox(height: _spacing),
-            buildElevatedButton(
-              onPressed: _saveChanges,
-              label: Strings.saveChanges,
-            ),
-            const SizedBox(height: _spacing),
-            buildElevatedButton(
-              onPressed: _removeBeneficiary,
-              label: Strings.removeBeneficiary,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-            ),
-          ],
+              const SizedBox(height: _spacing),
+              buildTextField(
+                controller: _phoneNumberController,
+                hintText: Strings.phoneNumberHint,
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(top: 10, right: 8, left: 8),
+                  child: Text(
+                    "+971",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                keyboardType: TextInputType.phone,
+                validator: Validator.validatePhoneNumber,
+              ),
+              const SizedBox(height: _spacing),
+              SwitchListTile(
+                title: const Text(Strings.verified),
+                value: _isVerified,
+                onChanged: (bool value) {
+                  setState(() {
+                    _isVerified = value;
+                  });
+                },
+              ),
+              const SizedBox(height: _spacing),
+              buildElevatedButton(
+                onPressed: _saveChanges,
+                label: Strings.saveChanges,
+              ),
+              const SizedBox(height: _spacing),
+              buildElevatedButton(
+                onPressed: _removeBeneficiary,
+                label: Strings.removeBeneficiary,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   void _saveChanges() {
-    final updatedBeneficiary = Beneficiary(
-      nickname: _nicknameController.text,
-      phoneNumber: _phoneNumberController.text,
-      isVerified: _isVerified,
-      monthlyTopUp: _monthlyTopUp,
-    );
-    Provider.of<BeneficiaryProvider>(context, listen: false)
-        .updateBeneficiary(_oldPhoneNumber, updatedBeneficiary);
-    Navigator.pop(context);
+    if (_formKey.currentState?.validate() ?? false) {
+      final updatedBeneficiary = Beneficiary(
+        nickname: _nicknameController.text,
+        phoneNumber: _phoneNumberController.text,
+        isVerified: _isVerified,
+        monthlyTopUp: _monthlyTopUp,
+      );
+      Provider.of<BeneficiaryProvider>(context, listen: false)
+          .updateBeneficiary(_oldPhoneNumber, updatedBeneficiary);
+      Navigator.pop(context);
+    }
   }
 
   void _removeBeneficiary() {
