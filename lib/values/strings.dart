@@ -19,4 +19,12 @@ class Strings {
   static const String nickname = "Nickname";
   static const String phoneNumberHint = "Phone Number, ex: 552711410";
   static const String submit = "Submit";
+
+  // Beneficiary Detail page
+  static const String beneficiaryDetails = "Beneficiary Details";
+  static const String saveChanges = "Save Changes";
+  static const String removeBeneficiary = "Remove Beneficiary";
+  static const String verified = "Verified";
+  static const String nicknameHint = "Nickname";
+  static const String phoneNumber = "Phone Number";
 }

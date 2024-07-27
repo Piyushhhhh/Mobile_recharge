@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
+import 'package:mobile_recharge/values/common_widgets.dart';
 import 'package:mobile_recharge/values/strings.dart';
 import 'package:mobile_recharge/view/add_beneficiary/add_beneficiary_screen.dart';
 import 'package:mobile_recharge/view/home/widgets/beneficery_card.dart';
@@ -29,15 +30,18 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AddBeneficiaryPage()),
-                  );
-                },
-                child: const Text(Strings.buttonTextAddBeneficiary),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: buildElevatedButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddBeneficiaryPage()),
+                    );
+                  },
+                  label: Strings.buttonTextAddBeneficiary,
+                ),
               ),
             ],
           );

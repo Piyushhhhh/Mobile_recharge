@@ -1,4 +1,3 @@
-// providers/beneficiary_provider.dart
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/models/beneficiary.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,6 +41,17 @@ class BeneficiaryProvider with ChangeNotifier {
         saveToPrefs();
         notifyListeners();
       }
+    }
+  }
+
+  void updateBeneficiary(
+      String oldPhoneNumber, Beneficiary updatedBeneficiary) {
+    final index =
+        _beneficiaries.indexWhere((b) => b.phoneNumber == oldPhoneNumber);
+    if (index != -1) {
+      _beneficiaries[index] = updatedBeneficiary;
+      saveToPrefs();
+      notifyListeners();
     }
   }
 
