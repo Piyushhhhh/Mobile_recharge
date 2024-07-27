@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
-import 'package:mobile_recharge/models/beneficiary.dart';
+import 'package:mobile_recharge/values/strings.dart';
+import 'package:mobile_recharge/view/add_beneficiary/add_beneficiary_screen.dart';
 import 'package:mobile_recharge/view/home/widgets/beneficery_card.dart';
 import 'package:provider/provider.dart';
 
@@ -11,14 +12,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edenred Beneficiaries'),
+        title: const Text(Strings.titleBeneficiaries),
       ),
       body: Consumer<BeneficiaryProvider>(
         builder: (context, provider, child) {
           return Column(
             children: [
               SizedBox(
-                height: 200,
+                height: 180,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: provider.beneficiaries.length,
@@ -29,48 +30,14 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  provider.addBeneficiary(Beneficiary(
-                    nickname: 'John Doe',
-                    phoneNumber: '0501234567',
-                    isVerified: false,
-                    monthlyTopUp: 0.0,
-                  ));
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddBeneficiaryPage()),
+                  );
                 },
-                child: const Text('Add Beneficiary'),
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
-
-class TopUpScreen extends StatelessWidget {
-  final Beneficiary beneficiary;
-
-  const TopUpScreen({super.key, required this.beneficiary});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Up ${beneficiary.nickname}'),
-      ),
-      body: Consumer<BeneficiaryProvider>(
-        builder: (context, provider, child) {
-          return Column(
-            children: [
-              Text('Balance: AED ${provider.balance}'),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Top Up Amount'),
-                keyboardType: TextInputType.number,
-                onSubmitted: (value) {
-                  final amount = double.tryParse(value) ?? 0.0;
-                  provider.topUpBeneficiary(beneficiary.phoneNumber, amount);
-                  Navigator.pop(context);
-                },
+                child: const Text(Strings.buttonTextAddBeneficiary),
               ),
             ],
           );

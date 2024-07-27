@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_recharge/models/beneficiary.dart';
-import 'package:mobile_recharge/view/home/home_screen.dart';
+import 'package:mobile_recharge/values/strings.dart';
+import 'package:mobile_recharge/view/top_up.dart/top_up_screen.dart';
 
 Widget beneficiaryTopUpBtn(BuildContext context, Beneficiary beneficiary) {
   return GestureDetector(
@@ -8,7 +9,7 @@ Widget beneficiaryTopUpBtn(BuildContext context, Beneficiary beneficiary) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => TopUpScreen(beneficiary: beneficiary),
+          builder: (context) => BeneficiaryTopUpPage(beneficiary.nickname),
         ),
       );
     },
@@ -25,7 +26,7 @@ Widget beneficiaryTopUpBtn(BuildContext context, Beneficiary beneficiary) {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
           child: Text(
-            "Recharge now",
+            Strings.rechargeNow,
             style: TextStyle(
                 color: Colors.white, fontSize: 9, fontWeight: FontWeight.w500),
           ),

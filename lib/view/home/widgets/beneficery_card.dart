@@ -26,19 +26,18 @@ Widget beneficeryCard(BuildContext context, Beneficiary beneficiary) {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                    fontSize: 10.5,
-                    // color: MAIN1,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 10.5, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 8,
               ),
-              Text(beneficiary.phoneNumber,
-                  style: const TextStyle(
-                      fontSize: 9.5,
-                      // color: TEXT_FIELD_HINT_COLOR,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500)),
+              Text(
+                beneficiary.phoneNumber,
+                style: const TextStyle(
+                    fontSize: 9.5,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w500),
+              ),
               const SizedBox(
                 height: 8,
               ),
