@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_recharge/values/common_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile_recharge/controller/beneficiary_provider.dart';
 import 'package:mobile_recharge/models/beneficiary.dart';
@@ -18,13 +19,13 @@ class BeneficiaryForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildTextField(
+        buildTextField(
           controller: nicknameController,
           hintText: Strings.nickname,
           prefixIcon: const Icon(Icons.text_fields, size: 20.0),
         ),
         const SizedBox(height: 8.0),
-        _buildTextField(
+        buildTextField(
           controller: phoneNumberController,
           hintText: Strings.phoneNumberHint,
           prefixIcon: const Padding(
@@ -46,38 +47,10 @@ class BeneficiaryForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    required Widget prefixIcon,
-    TextInputType keyboardType = TextInputType.text,
-  }) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      keyboardType: keyboardType,
-    );
-  }
-
   Widget _buildSubmitButton(BuildContext context) {
-    return ElevatedButton(
+    return buildElevatedButton(
       onPressed: () => _submitBeneficiary(context),
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-      child: const Text(
-        Strings.submit,
-        style: TextStyle(fontSize: 16),
-      ),
+      label: Strings.submit,
     );
   }
 
