@@ -10,7 +10,8 @@ Widget beneficiaryTopUpBtn(BuildContext context, Beneficiary beneficiary) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BeneficiaryTopUpPage(beneficiary.nickname),
+            builder: (context) => BeneficiaryTopUpPage(
+                beneficiary.nickname, beneficiary.phoneNumber),
           ),
         );
       },
