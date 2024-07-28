@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_recharge/values/common_widgets.dart';
 import 'package:mobile_recharge/values/strings.dart';
 
 class BeneficiaryTopUpWidgets {
@@ -127,19 +128,9 @@ class BeneficiaryTopUpWidgets {
   static Widget buildSubmitButton({
     required VoidCallback onPressed,
   }) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF5269B3),
-        minimumSize: const Size(double.infinity, 50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
+    return buildElevatedButton(
       onPressed: onPressed,
-      child: const Text(
-        Strings.topUp,
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
+      label: Strings.topUp,
     );
   }
 }
