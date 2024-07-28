@@ -72,7 +72,6 @@ Here are some screenshots of the app:
 
 Watch the demo video to see the app in action:
 
-[![Demo Video](path/to/video_thumbnail.png)](https://link_to_demo_video.com)
-
+You can watch the demo video of the Mobile Recharge App [here](https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/demo_video/demo.mp4).
 
 
