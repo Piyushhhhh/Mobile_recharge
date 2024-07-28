@@ -10,7 +10,7 @@ The app enables users to manage their top-up beneficiaries and execute top-up tr
 - **Top-Up Limitations**: 
   - Verified users can top up a maximum of AED 1,000 per calendar month per beneficiary.
   - Unverified users can top up a maximum of AED 500 per calendar month per beneficiary.
-  - Users can top up multiple beneficiaries but are limited to a total of AED 3,000 per month for all beneficiaries.
+  - Users can top up multiple beneficiaries but are limited to AED 3,000 per month for all beneficiaries.
   - A charge of AED 1 is applied for every top-up transaction.
 - **User Balance**: The user's balance is debited before attempting the top-up transaction, ensuring the top-up amount does not exceed the user's balance.
 
@@ -18,7 +18,7 @@ The app enables users to manage their top-up beneficiaries and execute top-up tr
 - `lib/`: Contains the main source code for the application.
   - `controllers/`: Contains the provider for managing beneficiaries.
   - `models/`: Contains the data models used in the application.
-  - `pages/`: Contains the UI pages of the application.
+  - `pages/`: Contains the application's UI pages.
   - `values/`: Contains the constants and common widgets used in the application.
 - `test/`: Contains the unit tests for the application.
 
@@ -36,7 +36,7 @@ The app enables users to manage their top-up beneficiaries and execute top-up tr
 ### Code Highlights
 ## topUpBeneficiary Function
 
-The `topUpBeneficiary` function is responsible for topping up a beneficiary's account. It ensures that the top-up amount does not exceed the monthly limit based on the beneficiary's verification status, and that there are sufficient funds to cover the top-up and a fee of 1 unit.
+The `topUpBeneficiary` function is responsible for topping up a beneficiary's account. It ensures that the top-up amount does not exceed the monthly limit based on the beneficiary's verification status and that sufficient funds cover the top-up and a fee of 1 unit.
 
 ```dart
 void topUpBeneficiary(String phoneNumber, double amount) {
@@ -59,14 +59,17 @@ void topUpBeneficiary(String phoneNumber, double amount) {
 
 Here are some screenshots of the app:
 
+### Home/Beneficiary Screen
+<img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/home.png" height="500" >
+
 ### Recharge/Top up
-<img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/top_up.png" height="700" >
+<img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/top_up.png" height="600" >
 
 ### Beneficiary Details
- <img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/beneficiary_detail.png" height="700" >
+ <img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/beneficiary_detail.png" height="600" >
 
 ### Add Beneficiary
-<img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/add_beneficiary.png" height="700" >
+<img src="https://github.com/Piyushhhhh/Mobile_recharge/blob/main/assets/screenshots/add_beneficiary.png" height="600" >
 
 ## Demo Video
 
